@@ -7,9 +7,11 @@
 
         <!-- JQuery, from CDN -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="jquery.min.js"></script>
 
         <!-- Bootstrap, from CDN -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> 
+        <link rel="stylesheet" href="bootstrap.css">
 
         <!-- CSS -->
         <link rel="stylesheet" href="calc.css">
@@ -20,8 +22,86 @@
         <title>JavaScript Calculator</title>
     </head>
     <body>
-        <div class="header container text-center">
-            <h1>JavaScript Calculator</h1>
+        <div class="container calculator-body">
+            <div class="title text-center">JS Calculator</div>
+            <div class="display" id="display">
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <button class="special-btn" id="ac">AC</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="special-btn" id="ce">CE</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="op-btn" id="l-paren">(</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="op-btn" id="r-paren">)</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">7</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">8</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">9</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="op-btn" id="divide">/</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">4</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">5</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">6</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="op-btn" id="multiply">x</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">1</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">2</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">3</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="op-btn" id="minus">-</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <button class="num-btn" id="num">0</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="num-btn" id="decimal">.</button>
+                </div>
+                <div class="col-sm-3">
+                    <!-- TODO: consider changing class to "op-btn"?-->
+                    <button class="num-btn" id="negative">(-)</button>
+                </div>
+                <div class="col-sm-3">
+                    <button class="op-btn vertical" id="plus">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <button class="op-btn horizontal" id="equals">=</button>
+                </div>
+            </div>
         </div>
 
         <!-- More Bootstrap stuff. Tether, than some JS -->
