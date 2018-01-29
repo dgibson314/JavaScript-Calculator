@@ -1,6 +1,7 @@
 function updateDisplay(button) {
     var buttonVal = $(button).text();
     var buttonType = $(button).attr("class");
+    var currValDisplay = $("#current-val").text();
 
     switch (buttonType) {
         // AC or CE
@@ -17,7 +18,6 @@ function updateDisplay(button) {
 
         // Number
         case "num-btn":
-            var currValDisplay = $("#current-val").text();
             if (currValDisplay === "0") {
                 if (buttonVal !== "0") {
                     $("#current-val").text(buttonVal);
