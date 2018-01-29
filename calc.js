@@ -1,7 +1,13 @@
+function isOperator(x) {
+    return (x === "(" || x === ")" || x === "/" || x === "x" ||
+            x === "-" || x === "+" || x === "(-)" || x === ".");
+}
+
 function updateDisplay(button) {
     var buttonVal = $(button).text();
     var buttonType = $(button).attr("class");
     var currValDisplay = $("#current-val").text();
+
 
     switch (buttonType) {
         // AC or CE
@@ -14,6 +20,10 @@ function updateDisplay(button) {
 
         // Operator
         case "op-btn":
+            if (currValDisplay !== "0" && !isOperator(currValDisplay)) {
+                $("#current-val").text(buttonVal);
+                $("#op-chain").append(buttonVal);
+            }
             break;
 
         // Number
@@ -21,11 +31,17 @@ function updateDisplay(button) {
             if (currValDisplay === "0") {
                 if (buttonVal !== "0") {
                     $("#current-val").text(buttonVal);
+                    $("#op-chain").text(buttonVal);
                 }
                 else {}
             }
+            else if (isOperator(currValDisplay)){
+                $("#current-val").text(buttonVal);
+                $("#op-chain").append(buttonVal);
+            }
             else {
                 $("#current-val").append(buttonVal);
+                $("#op-chain").append(buttonVal);
             }
             break;
     }
