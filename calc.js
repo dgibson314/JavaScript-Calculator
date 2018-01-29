@@ -10,7 +10,14 @@ $(document).ready(function() {
                     $("#op-chain").text("0");
                 }
                 break;
-            default:
+
+            // Operator
+            case "op-btn":
+                break;
+
+            // Number
+            case "num-btn":
+                break;
         }
     });
 
