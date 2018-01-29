@@ -1,11 +1,11 @@
 $(document).ready(function() {
     
     $("button").click(function() {
-        var text = $(this).text();
+        var buttonVal = $(this).text();
         switch ($(this).attr("class")) {
             // AC or CE
             case "special-btn":
-                if (text === "AC") {
+                if (buttonVal === "AC") {
                     $("#current-val").text("0");
                     $("#op-chain").text("0");
                 }
@@ -17,6 +17,18 @@ $(document).ready(function() {
 
             // Number
             case "num-btn":
+                var currVal = $("#current-val").text();
+                if (currVal === "0") {
+                    if (buttonVal !== "0") {
+                        $("#current-val").text(buttonVal);
+                    }
+                    else {
+                        ;
+                    }
+                }
+                else {
+                    $("#current-val").append(buttonVal);
+                }
                 break;
         }
     });
