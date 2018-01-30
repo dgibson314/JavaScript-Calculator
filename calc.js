@@ -3,8 +3,6 @@ function isOperator(str) {
             str === "-" || str === "+" || str === "(-)" || str === ".");
 }
 
-function test() {;}
-
 function hasDecimal(str) {
     return (str.indexOf(".") !== -1);
 }
