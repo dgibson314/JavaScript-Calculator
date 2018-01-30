@@ -1,6 +1,6 @@
 function isOperator(str) {
     return (str === "(" || str === ")" || str === "/" || str === "x" ||
-            str === "-" || str === "+" || str === "(-)" || str === ".");
+            str === "-" || str === "+" || str === "=" || str === ".");
 }
 
 function hasDecimal(str) {
@@ -31,14 +31,15 @@ function updateDisplay(button) {
                         $("#op-chain").append(buttonVal);
                     }
                     break;
-                case "(-)":
-
-                    break;
             }
             break;
 
         // Operator {'(', ')', '/', 'x', '-', '+', '='}
         case "op-btn":
+            // TODO
+            if (buttonVal === "=") {
+            }
+
             if (currValDisplay !== "0" && !isOperator(currValDisplay)) {
                 $("#current-val").text(buttonVal);
                 $("#op-chain").append(buttonVal);
