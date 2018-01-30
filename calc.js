@@ -4,21 +4,30 @@ function isOperator(x) {
 }
 
 function updateDisplay(button) {
+
     var buttonVal = $(button).text();
     var buttonType = $(button).attr("class");
     var currValDisplay = $("#current-val").text();
 
 
     switch (buttonType) {
-        // AC or CE
+        // AC, CE, decimal, negative
         case "special-btn":
-            if (buttonVal === "AC") {
-                $("#current-val").text("0");
-                $("#op-chain").text("0");
+            switch (buttonVal) {
+                case "AC":
+                    $("#current-val").text("0");
+                    $("#op-chain").text("0");
+                    break;
+                case "CE":
+                    break;
+                case ".":
+                    break;
+                case "(-)":
+                    break;
             }
             break;
 
-        // Operator
+        // Operator {'(', ')', '/', 'x', '-', '+', '='}
         case "op-btn":
             if (currValDisplay !== "0" && !isOperator(currValDisplay)) {
                 $("#current-val").text(buttonVal);
