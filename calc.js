@@ -41,8 +41,14 @@ function updateDisplay(button) {
                     $("#op-chain").text("0");
                     break;
                 case "CE":
-                    $("#current-val").text("_");
-                    $("#op-chain").text(eraseLastToken(opChainDisplay));
+                    if (ans !== "") {
+                        $("#current-val").text("0");
+                        $("#op-chain").text("0");
+                    }
+                    else {
+                        $("#current-val").text("_");
+                        $("#op-chain").text(eraseLastToken(opChainDisplay));
+                    }
                     break;
                 case ".":
                     if (isOperator(currValDisplay)) {
