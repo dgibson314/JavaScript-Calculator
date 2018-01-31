@@ -17,6 +17,7 @@ function eraseLastToken(str) {
     else {
         while (!isOperator(tokens[last])) {
             tokens.pop();
+            last--;
         }
     }
 
@@ -62,9 +63,12 @@ function updateDisplay(button) {
         case "op-btn":
             // TODO
             if (buttonVal === "=") {
+                var result = eval(opChainDisplay);
+                $("#current-val").text(result);
+                $("#op-chain").append("=" + result);
             }
 
-            if (currValDisplay !== "0" && !isOperator(currValDisplay)) {
+            else if (currValDisplay !== "0" && !isOperator(currValDisplay)) {
                 $("#current-val").text(buttonVal);
                 $("#op-chain").append(buttonVal);
             }
@@ -78,6 +82,10 @@ function updateDisplay(button) {
                     $("#op-chain").text(buttonVal);
                 }
                 else {}
+            }
+            else if (currValDisplay === "_") {
+                $("#current-val").text(buttonVal);
+                $("#op-chain").append(buttonVal);
             }
             else if (isOperator(currValDisplay)){
                 $("#current-val").text(buttonVal);
