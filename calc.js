@@ -1,3 +1,6 @@
+/* TODO:
+ * Add rounding capability */
+
 function isOperator(str) {
     return (str === "(" || str === ")" || str === "/" || str === "x" ||
             str === "-" || str === "+" || str === "=");
@@ -63,7 +66,8 @@ function updateDisplay(button) {
         case "op-btn":
             // TODO
             if (buttonVal === "=") {
-                var result = eval(opChainDisplay);
+                var cleanOpChain = opChainDisplay.replace("x", "*");
+                var result = eval(cleanOpChain);
                 $("#current-val").text(result);
                 $("#op-chain").append("=" + result);
             }
