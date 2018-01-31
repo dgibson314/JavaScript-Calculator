@@ -1,3 +1,5 @@
+var ans = "";
+
 function isOperator(str) {
     return (str === "(" || str === ")" || str === "/" || str === "x" ||
             str === "-" || str === "+" || str === "=");
@@ -20,7 +22,6 @@ function eraseLastToken(str) {
             last--;
         }
     }
-
     return tokens.join("");
 }
 
@@ -30,7 +31,6 @@ function updateDisplay(button) {
     var buttonType = $(button).attr("class");
     var currValDisplay = $("#current-val").text();
     var opChainDisplay = $("#op-chain").text();
-
 
     switch (buttonType) {
         // AC, CE, decimal, negative
@@ -61,17 +61,21 @@ function updateDisplay(button) {
 
         // Operator {'(', ')', '/', 'x', '-', '+', '='}
         case "op-btn":
-            // TODO
             if (buttonVal === "=") {
                 var cleanOpChain = opChainDisplay.replace("x", "*");
                 var result = eval(cleanOpChain);
                 if (hasDecimal(result.toString())) {
                     result = +result.toFixed(2);
                 }
+                ans = result;
                 $("#current-val").text(result);
                 $("#op-chain").append("=" + result);
             }
-
+            else if (ans !== "") {
+                $("#current-val").text(buttonVal);
+                $("#op-chain").text(ans + buttonVal);
+                ans = "";
+            }
             else if (currValDisplay !== "0" && !isOperator(currValDisplay)) {
                 $("#current-val").text(buttonVal);
                 $("#op-chain").append(buttonVal);
@@ -80,7 +84,7 @@ function updateDisplay(button) {
 
         // Number
         case "num-btn":
-            if (currValDisplay === "0") {
+            if (currValDisplay === "0" || ans !== "") {
                 if (buttonVal !== "0") {
                     $("#current-val").text(buttonVal);
                     $("#op-chain").text(buttonVal);
@@ -99,13 +103,14 @@ function updateDisplay(button) {
                 $("#current-val").append(buttonVal);
                 $("#op-chain").append(buttonVal);
             }
+            ans = "";
             break;
     }
 
 }
 
 $(document).ready(function() {
-    
+
     $("button").on("click", function() {
         updateDisplay(this);
     });
