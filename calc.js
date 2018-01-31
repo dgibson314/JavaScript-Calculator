@@ -1,6 +1,7 @@
-function isOperator(str) {
+function notNumber(str) {
     return (str === "(" || str === ")" || str === "/" || str === "x" ||
-            str === "-" || str === "+" || str === "=" || str === ".");
+            str === "-" || str === "+" || str === "=" || str === "." ||
+            str === "_");
 }
 
 function hasDecimal(str) {
@@ -23,9 +24,10 @@ function updateDisplay(button) {
                     $("#op-chain").text("0");
                     break;
                 case "CE":
+                    $("#current-val").text("_");
                     break;
                 case ".":
-                    if (!isOperator(currValDisplay) &&
+                    if (!notNumber(currValDisplay) &&
                         !hasDecimal(currValDisplay)) {
                         $("#current-val").append(buttonVal);
                         $("#op-chain").append(buttonVal);
@@ -40,7 +42,7 @@ function updateDisplay(button) {
             if (buttonVal === "=") {
             }
 
-            if (currValDisplay !== "0" && !isOperator(currValDisplay)) {
+            if (currValDisplay !== "0" && !notNumber(currValDisplay)) {
                 $("#current-val").text(buttonVal);
                 $("#op-chain").append(buttonVal);
             }
@@ -55,7 +57,7 @@ function updateDisplay(button) {
                 }
                 else {}
             }
-            else if (isOperator(currValDisplay)){
+            else if (notNumber(currValDisplay)){
                 $("#current-val").text(buttonVal);
                 $("#op-chain").append(buttonVal);
             }
