@@ -1,11 +1,17 @@
-function notNumber(str) {
+function isOperator(str) {
     return (str === "(" || str === ")" || str === "/" || str === "x" ||
-            str === "-" || str === "+" || str === "=" || str === "." ||
-            str === "_");
+            str === "-" || str === "+" || str === "=" || str === "_");
 }
 
 function hasDecimal(str) {
     return (str.indexOf(".") !== -1);
+}
+
+function eraseLastNum(str) {
+    var tokens = str.split("");
+    
+    var i = tokens.length - 1;
+    // Erase operators coming after  
 }
 
 function updateDisplay(button) {
@@ -27,10 +33,15 @@ function updateDisplay(button) {
                     $("#current-val").text("_");
                     break;
                 case ".":
-                    if (!notNumber(currValDisplay) &&
-                        !hasDecimal(currValDisplay)) {
-                        $("#current-val").append(buttonVal);
-                        $("#op-chain").append(buttonVal);
+                    if (isOperator(currValDisplay)) {
+                        $("#current-val").text("0.");
+                        $("#op-chain").append("0.");
+                    }
+                    else {
+                        if (!hasDecimal(currValDisplay)) {
+                            $("#current-val").append(".");
+                            $("#op-chain").append(".");
+                        }
                     }
                     break;
             }
@@ -42,7 +53,7 @@ function updateDisplay(button) {
             if (buttonVal === "=") {
             }
 
-            if (currValDisplay !== "0" && !notNumber(currValDisplay)) {
+            if (currValDisplay !== "0" && !isOperator(currValDisplay)) {
                 $("#current-val").text(buttonVal);
                 $("#op-chain").append(buttonVal);
             }
@@ -57,7 +68,7 @@ function updateDisplay(button) {
                 }
                 else {}
             }
-            else if (notNumber(currValDisplay)){
+            else if (isOperator(currValDisplay)){
                 $("#current-val").text(buttonVal);
                 $("#op-chain").append(buttonVal);
             }
