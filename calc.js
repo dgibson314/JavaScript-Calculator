@@ -1,17 +1,26 @@
 function isOperator(str) {
     return (str === "(" || str === ")" || str === "/" || str === "x" ||
-            str === "-" || str === "+" || str === "=" || str === "_");
+            str === "-" || str === "+" || str === "=");
 }
 
 function hasDecimal(str) {
     return (str.indexOf(".") !== -1);
 }
 
-function eraseLastNum(str) {
+function eraseLastToken(str) {
     var tokens = str.split("");
     
-    var i = tokens.length - 1;
-    // Erase operators coming after  
+    var last = tokens.length - 1;
+    if (isOperator(tokens[last])) {
+        tokens.pop();
+    }
+    else {
+        while (!isOperator(tokens[last])) {
+            tokens.pop();
+        }
+    }
+
+    return tokens.join("");
 }
 
 function updateDisplay(button) {
@@ -19,6 +28,7 @@ function updateDisplay(button) {
     var buttonVal = $(button).text();
     var buttonType = $(button).attr("class");
     var currValDisplay = $("#current-val").text();
+    var opChainDisplay = $("#op-chain").text();
 
 
     switch (buttonType) {
@@ -31,6 +41,7 @@ function updateDisplay(button) {
                     break;
                 case "CE":
                     $("#current-val").text("_");
+                    $("#op-chain").text(eraseLastToken(opChainDisplay));
                     break;
                 case ".":
                     if (isOperator(currValDisplay)) {
